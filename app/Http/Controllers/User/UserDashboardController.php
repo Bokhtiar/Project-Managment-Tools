@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\StudentAssign;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserDashboardController extends Controller
 {
@@ -14,7 +18,14 @@ class UserDashboardController extends Controller
      */
     public function index()
     {
-        return "user dashboard";
+        $project = StudentAssign::where('user_id', Auth::id())->first();
+        if($project == null){
+            $tasks = null;
+        }else{
+            $tasks = Task::where('project_id', $project->project_id)->get();
+        }
+        
+        return view('user.dashboard.index', compact('project','tasks'));
     }
 
     /**
@@ -22,9 +33,9 @@ class UserDashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function about()
     {
-        //
+        return view('user.about');
     }
 
     /**
@@ -33,9 +44,9 @@ class UserDashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function contact()
     {
-        //
+        return view('user.contact');
     }
 
     /**
@@ -44,9 +55,10 @@ class UserDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function logout()
     {
-        //
+        Auth::logout();
+        return redirect('/');
     }
 
     /**
@@ -55,9 +67,14 @@ class UserDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function contact_store(Request $request)
     {
-        //
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->msg = $request->msg;
+        $contact->save();
+        return redirect('/');
     }
 
     /**

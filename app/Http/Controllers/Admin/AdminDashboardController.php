@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends Controller
 {
@@ -22,9 +24,10 @@ class AdminDashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function contact_list()
     {
-        //
+        $contacts = Contact::all();
+        return view('admin.contact_list', compact('contacts'));
     }
 
     /**
@@ -33,9 +36,10 @@ class AdminDashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function logout()
     {
-        //
+        Auth::logout();
+        return redirect('/');
     }
 
     /**

@@ -1,76 +1,142 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title> Pmt | @yield('title')</title>
 
-  <!-- Favicons -->
-  <link href="{{asset('admin')}}/assets/img/favicon.png" rel="icon">
-  <link href="{{asset('admin')}}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{asset('admin')}}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="{{asset('admin')}}/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{{asset('admin')}}/assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.2.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/ba78558982.js" crossorigin="anonymous"></script>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('admin') }}/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  @yield('css')
 </head>
-
-<body>
-
-  <!-- ======= Header ======= -->
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
   @include('layouts.admin.partial.header')
-  <!-- End Header -->
+  <!-- /.navbar -->
 
-  <!-- ======= Sidebar ======= -->
+  <!-- Main Sidebar Container -->
   @include('layouts.admin.partial.sidebar')
-  <!-- End Sidebar-->
 
-  <main id="main" class="main">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     @yield('admin_content')
-  </main><!-- End #main -->
+  </div>
+  <!-- /.content-wrapper -->
 
-  <!-- ======= Footer ======= -->
-  @include('layouts.admin.partial.footer')
-  <!-- End Footer -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="{{asset('admin')}}/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/chart.js/chart.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/quill/quill.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="{{asset('admin')}}/assets/vendor/php-email-form/validate.js"></script>
+</div>
+<!-- ./wrapper -->
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('admin')}}/assets/js/main.js"></script>
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('admin') }}/dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{{ asset('admin') }}/dist/js/demo.js"></script>
+
+<script src="{{ asset('admin') }}/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- jVectorMap -->
+<script src="{{ asset('admin') }}/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="{{ asset('admin') }}/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="{{ asset('admin') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- ChartJS 1.0.2 -->
+<script src="{{ asset('admin') }}/plugins/chartjs-old/Chart.min.js"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="{{ asset('admin') }}/dist/js/pages/dashboard2.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js" charset="utf-8"></script>
+
+
+
+
+
+@if(Session::has('insert'))
+  <script type="text/javascript">
+    swal("Inserted Data","Added Sucessfully...","success")
+  </script>
+@endif
+
+
+@if(Session::has('update'))
+  <script type="text/javascript">
+    swal("Updated Data","Update Sucessfully...","success")
+  </script>
+@endif
+
+@if(Session::has('delete'))
+  <script type="text/javascript">
+    swal("Delete Successfully","Delete Secessfully","success")
+  </script>
+@endif
+
+
+
+@if(Session::has('status'))
+  <script type="text/javascript">
+    swal("Complate","Status Update Successfully","success")
+  </script>
+@endif
+
+@if(Session::has('low_stock'))
+  <script type="text/javascript">
+    swal("Product Low Stock Alert","Your Product Low Stock","warning")
+  </script>
+@endif
+
+@if(Session::has('reset_password'))
+  <script type="text/javascript">
+    swal("Enter your valid Password","Dont matched the password plz inter your valid password...","warning")
+  </script>
+@endif
+
+@if(Session::has('confirm-password'))
+  <script type="text/javascript">
+    swal("Enter your valid Password","Dont matched the password plz inter your valid password...","error")
+  </script>
+@endif
+
+
+<script type="text/javascript">
+
+$(document).on("click","#delete",function(e){
+e.preventDefault();
+var link=$(this).attr("href");
+bootbox.confirm("are you want to delete",function(confirmed){
+  if(confirmed){
+    window.location.href=link;
+};
+});
+});
+
+
+
+</script>
+@yield('js')
+
+
 
 </body>
-
 </html>
