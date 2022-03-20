@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use App\Models\Project;
-use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TaskController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('admin.project.task.index', compact('tasks'));
-
+        //
     }
 
     /**
@@ -30,8 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $projects = Project::all();
-        return view('admin.project.task.createOrUpdate', compact('projects'));
+        //
     }
 
     /**
@@ -40,16 +35,13 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $task = new Task;
-        $task->title = $request->title;
-        $task->user_id = Auth::id();
-        $task->des = $request->des;
-        $task->start_date = $request->start_date;
-        $task->end_dete = $request->end_date;
-        $task->project_id = $request->project_id;
-        $task->save();
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->task_id = $id;
+        $comment->comment = $request->comment;
+        $comment->save();
         return back();
     }
 
@@ -61,9 +53,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $show = Task::find($id);
-        $comments = Comment::where('task_id', $id)->get();
-        return view('admin.project.task.show', compact('show', 'comments'));
+        //
     }
 
     /**
@@ -74,9 +64,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $edit = Task::find($id);
-        $projects = Project::all();
-        return view('admin.project.task.createOrUpdate', compact('projects', 'edit'));
+        //
     }
 
     /**
@@ -88,15 +76,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
-        $task->title = $request->title;
-        $task->user_id = Auth::id();
-        $task->des = $request->des;
-        $task->start_date = $request->start_date;
-        $task->end_dete = $request->end_date;
-        $task->project_id = $request->project_id;
-        $task->save();
-        return redirect()->route('admin.task.index');
+        //
     }
 
     /**
@@ -107,7 +87,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        Task::find($id)->delete();
-        return redirect()->route('admin.task.index');
+        //
     }
 }

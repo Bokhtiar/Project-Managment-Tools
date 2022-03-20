@@ -25,6 +25,27 @@
             </div>
         </div>
     </section>
+    <section class="container">
+        <h2>Comment Create Section </h2>
+        <form action="{{ url('admin/comment/store', $show->id) }}">
+            @csrf
+                <input class="form-control" type="text" placeholder="Comment here" name="comment" required id="">
+                <input type="submit" name="" value="submit" class="btn btn-success my-2" id="">
+            </form>
+        <h2>Comment Section</h2>
+        @forelse ($comments as $item)
+        <div class="card my-2">
+            <div class="card-header">
+                {{ $item->user ? $item->user->name : '' }}
+            </div>
+            <div class="card-body">
+                <p>{{ $item->comment }}</p>
+            </div>
+        </div>
+        @empty
+        <p>no comment this task</p>
+        @endforelse
+    </section>
     @endsection
 
 @section('js')

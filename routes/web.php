@@ -45,6 +45,8 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     Route::resource('task', TaskController::class);
     //contact list
     Route::get('/contact/list', [App\Http\Controllers\Admin\AdminDashboardController::class, 'contact_list']);
+    //comment
+    Route::get('comment/store/{id}', [App\Http\Controllers\Admin\CommentController::class, 'store']);
     //logout
     Route::get('logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'logout']);
 
