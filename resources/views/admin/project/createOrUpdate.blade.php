@@ -38,7 +38,7 @@
                                     <select name="student_id" id="product_id" class="form-control select2">
                                         <option value="">--Select Student--</option>
                                         @foreach (App\Models\User::where('role_id', 2)->get() as $item)
-                                            <option value="{{ $item->id }}"> {{ $item->name }}</option>
+                                            <option value="{{ $item->id }}"> {{ $item->name .' ('. $item->student_id .')'  }}</option>
                                         @endforeach
                                     </select>
 
@@ -48,6 +48,7 @@
                                             <tr>
                                                 <th scope="col">Student Name</th>
                                                 <th scope="col">Email</th>
+                                                <th scope="col">Student ID</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -102,6 +103,7 @@
                             <input type="hidden" class="form-control form-control-sm" value="'+item.id+'" name="user_id[]" >\
                             <td>'+item.name+'</td>\
                             <td>'+item.email+'</td>\
+                            <td>'+item.student_id+'</td>\
                             </tr>')
                             })
                     }
