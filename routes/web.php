@@ -50,6 +50,7 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     //search
     Route::post('search', [App\Http\Controllers\Admin\SearchController::class, 'search']);
     Route::get('student/{id}', [App\Http\Controllers\Admin\SearchController::class, 'student']);
+    Route::get('projectinfo/{id}', [App\Http\Controllers\Admin\SearchController::class, 'project']);
     //logout
     Route::get('logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'logout']);
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Project;
+use App\Models\StudentAssign;
 
 class SearchController extends Controller
 {
@@ -16,7 +18,8 @@ class SearchController extends Controller
             return view('admin.search.student',compact('items'));
 
         }else{
-            
+            $items = Project::orwhere('name','like','%'.$request->search_key.'%')->get();
+            return view('admin.search.project',compact('items'));
         }
     }
 
@@ -24,6 +27,12 @@ class SearchController extends Controller
     {
         $user = User::find($id);
         return view('admin.search.studentinfo' , compact('user'));        
+    }
+
+    public function project($id)
+    {
+        $studentAssigns = StudentAssign::where('project_id', $id)->get();
+        return view('admin.search.projectStudentList' , compact('studentAssigns'));        
     }
 
 }
