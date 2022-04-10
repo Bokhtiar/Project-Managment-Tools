@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -42,6 +43,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
         $task = new Task;
         $task->title = $request->title;
         $task->user_id = Auth::id();
@@ -49,6 +51,35 @@ class TaskController extends Controller
         $task->start_date = $request->start_date;
         $task->end_dete = $request->end_date;
         $task->project_id = $request->project_id;
+
+
+
+        $image=$request->file('file');
+        if ($image){
+        $image_name=Str::random(20);
+        $ext=strtolower($image->getClientOriginalExtension());
+        $image_full_name=$image_name.'.'.$ext;
+        $upload_path='file/pdf';
+        $image_url=$upload_path.$image_full_name;
+        $success=$image->move($upload_path,$image_full_name);
+            if ($success) {
+            $task['file']=$image_url;
+
+             }
+         }
+
+
+        $images = array();
+        if ($request->hasFile('images')) {
+            foreach ($request->images as $key => $photo) {
+                $path = $photo->store('task/photos');
+                array_push($images, $path);
+            }
+            $task['images']=json_encode($images);
+        }
+
+
+
         $task->save();
         return back();
     }

@@ -12,14 +12,14 @@
     <form class="form-inline ml-3" method="POST" action="{{ url('admin/search') }}">
         @csrf
       <div class="input-group input-group-sm">
-        <select name="item" id="" class="from-control form-control-navbar">
+        <select required name="item" id="" class="from-control form-control-navbar">
           <option value="">--Select Type--</option>
           <option value="student">Students</option>
           <option value="project">Project</option>
         </select>
       </div>
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" name="search_key" placeholder="Search" aria-label="Search">
+        <input required class="form-control form-control-navbar" type="search" name="search_key" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fa fa-search"></i>

@@ -21,6 +21,8 @@ class CreateTasksTable extends Migration
             $table->longText('des');
             $table->string('start_date');
             $table->string('end_dete');
+            $table->longText('images')->nullable();
+            $table->longText('file')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

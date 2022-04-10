@@ -2,6 +2,16 @@
 
 @section('title', 'Task Create')
 @section('css')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/prettify.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.css"></link>
+  
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/jquery-1.7.2.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/prettify.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/bootstrap.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.js"></script>
 @endsection
 
 @section('admin_content')
@@ -13,10 +23,10 @@
     <div class="card-header ">
         <div class="card-body">
             @if(@$edit)
-            <form action="@route('admin.task.update', @$edit->id)" method="POST" class="form-group">
+            <form action="@route('admin.task.update', @$edit->id)" method="POST" class="form-group" enctype="multipart/form-data">
                 @method('PUT')
             @endif
-            <form action="@route('admin.task.store')" method="POST" class="form-group">
+            <form action="@route('admin.task.store')" method="POST" class="form-group" enctype="multipart/form-data">
                 @csrf
                 <div class="my-3">
                     <div class="">
@@ -48,12 +58,26 @@
                                             <label for="">Task End Date</label>
                                             <input type="date" name="end_date" value="{{ @$edit->end_dete }}"  required class="form-control" id="">
                                         </div></div>
+
+
+                                        
+                                    <div class="col-md-6 col-sm-12 col-lg-6">
+                                        <label for="">Select Images</label>
+                                        <input type="file" class="form-control my-5" style="height: 200px" name="images[]" multiple>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-lg-6">
+                                        <label for="">File Choose</label>
+                                        <input type="file" class="form-control my-5" style="height: 200px" name="file">
+                                    </div>
+
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="">Task Description</label>
-                                        <textarea class="form-control" name="des" id="" cols="10" rows="4" placeholder="Description" required>{{ @$edit->des }}</textarea>
+                                        <label><strong>Description :</strong></label>
+                                        <textarea class="form-control" name="des">{{ @$edit->des }}</textarea>
                                     </div>
+
+                                    
 
 
                                 </div>
@@ -61,6 +85,12 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+                
 
                 <div class="float-right">
                     <input type="submit" class="btn btn-primary" value="Task Confirm">
@@ -72,5 +102,8 @@
 </section>
 
 
+@section('js')
+
+@endsection
 
 @endsection
