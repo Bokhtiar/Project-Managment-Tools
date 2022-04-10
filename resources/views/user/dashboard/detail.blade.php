@@ -19,6 +19,29 @@
                     </div>
                     <div class="card-body">
                         <p class="lead">{{ $show->des }}</p>
+
+
+                        <section class="row">
+                            <div class="">
+                                @if ($show->images == null)
+                                
+                                @else
+                                @php
+                                $images = json_decode($show->images);
+                                @endphp
+                                @foreach ($images as $item)
+                                    <img height="200px" width="200px" src="{{ asset($item) }}"  alt="">
+                                @endforeach
+                                @endif
+                            </div>
+                           
+                           
+                        </section>
+                        <div class="">
+                            <a href="{{ asset($show->file) }}" download={{ $show->title }} class="btn btn-success" >DOC FILE DOWNLOAD</a>
+                         </div>
+
+
                     <hr>
                         <section>
                             <form action="{{ url('user/comment/store', $show->id) }}">
