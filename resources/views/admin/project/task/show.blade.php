@@ -24,6 +24,26 @@
                 </div>
             </div>
         </div>
+
+
+        <section class="row">
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                @if ($show->images == null)
+                
+                @else
+                @php
+                $images = json_decode($show->images);
+                @endphp
+                @foreach ($images as $item)
+                    <img height="200px" width="200px" src="{{ asset($item) }}"  alt="">
+                @endforeach
+                @endif
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+               <a href="{{ asset($show->file) }}" download={{ $show->title }}>DOC</a>
+            </div>
+           
+        </section>
     </section>
     <section class="container">
         <h2>Comment Create Section </h2>

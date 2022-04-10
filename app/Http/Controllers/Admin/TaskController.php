@@ -126,6 +126,44 @@ class TaskController extends Controller
         $task->start_date = $request->start_date;
         $task->end_dete = $request->end_date;
         $task->project_id = $request->project_id;
+
+
+        if($request->file){
+            $image=$request->file('file');
+            if ($image){
+            $image_name=Str::random(20);
+            $ext=strtolower($image->getClientOriginalExtension());
+            $image_full_name=$image_name.'.'.$ext;
+            $upload_path='file/pdf';
+            $image_url=$upload_path.$image_full_name;
+            $success=$image->move($upload_path,$image_full_name);
+                if ($success) {
+                $task['file']=$image_url;
+
+                }
+            }
+        }else{
+            $task['file'] = $task->file;
+        }
+        
+
+
+        if($request->images){
+            $images = array();
+            if ($request->hasFile('images')) {
+                foreach ($request->images as $key => $photo) {
+                    $path = $photo->store('task/photos');
+                    array_push($images, $path);
+                }
+                $task['images']=json_encode($images);
+            }
+        }else{
+            $task['images']= $task->images;
+        }
+        
+
+
+
         $task->save();
         return redirect()->route('admin.task.index');
     }
