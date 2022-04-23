@@ -24,7 +24,7 @@
                         <section class="row">
                             <div class="">
                                 @if ($show->images == null)
-                                
+
                                 @else
                                 @php
                                 $images = json_decode($show->images);
@@ -34,11 +34,11 @@
                                 @endforeach
                                 @endif
                             </div>
-                           
-                           
+
+
                         </section>
                         <div class="">
-                            <a href="{{ asset($show->file) }}" download={{ $show->title }} class="btn btn-success" >DOC FILE DOWNLOAD</a>
+                            <a href="{{ asset($show->file) }}" download={{ $show->file }} class="btn btn-success" >DOC FILE DOWNLOAD</a>
                          </div>
 
 
@@ -82,8 +82,17 @@
                     </div>
                     <div class="card-body">
                         @foreach ($tasks as $item)
+                        <?php
+                        $str = $item->user_id;
+                        $ex =  explode(" ",$str);
+
+                        ?>
+                @foreach ($ex as $e)
+                    @if ($e==Auth::id())
                         <p><a href="{{ url('user/task/detail', $item->id) }}">{{ $item->title }}</a> </p> <hr>
-                        @endforeach
+                    @endif
+                    @endforeach
+                @endforeach
                     </div>
                 </div>
 

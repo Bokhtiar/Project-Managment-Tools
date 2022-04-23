@@ -23,8 +23,9 @@ class UserDashboardController extends Controller
             $tasks = null;
         }else{
             $tasks = Task::where('project_id', $project->project_id)->get();
+
         }
-        
+
         return view('user.dashboard.index', compact('project','tasks'));
     }
 

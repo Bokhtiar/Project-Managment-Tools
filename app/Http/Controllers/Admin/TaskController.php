@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -32,7 +33,8 @@ class TaskController extends Controller
     public function create()
     {
         $projects = Project::all();
-        return view('admin.project.task.createOrUpdate', compact('projects'));
+        $users = User::where('role_id',2)->get();
+        return view('admin.project.task.createOrUpdate', compact('projects','users'));
     }
 
     /**
@@ -46,7 +48,7 @@ class TaskController extends Controller
 
         $task = new Task;
         $task->title = $request->title;
-        $task->user_id = Auth::id();
+        $task->user_id = implode(" ",$request->user_id);
         $task->des = $request->des;
         $task->start_date = $request->start_date;
         $task->end_dete = $request->end_date;
@@ -59,7 +61,7 @@ class TaskController extends Controller
         $image_name=Str::random(20);
         $ext=strtolower($image->getClientOriginalExtension());
         $image_full_name=$image_name.'.'.$ext;
-        $upload_path='file/pdf';
+        $upload_path='file/pdf/';
         $image_url=$upload_path.$image_full_name;
         $success=$image->move($upload_path,$image_full_name);
             if ($success) {
@@ -72,7 +74,7 @@ class TaskController extends Controller
         $images = array();
         if ($request->hasFile('images')) {
             foreach ($request->images as $key => $photo) {
-                $path = $photo->store('task/photos');
+                $path = $photo->store('task/photos/');
                 array_push($images, $path);
             }
             $task['images']=json_encode($images);
@@ -145,7 +147,7 @@ class TaskController extends Controller
         }else{
             $task['file'] = $task->file;
         }
-        
+
 
 
         if($request->images){
@@ -160,7 +162,7 @@ class TaskController extends Controller
         }else{
             $task['images']= $task->images;
         }
-        
+
 
 
 

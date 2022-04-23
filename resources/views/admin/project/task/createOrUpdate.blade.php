@@ -6,7 +6,7 @@
      <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/prettify.css"></link>
     <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.css"></link>
-  
+
     <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/wysihtml5-0.3.0.js"></script>
     <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/jquery-1.7.2.min.js"></script>
     <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/prettify.js"></script>
@@ -36,11 +36,23 @@
                                 <div class="col-md-8">
                                     <label for="">Select Project</label>
                                     <select name="project_id" id="" class="form-control select2" required>
-                                        <option value="">--Select Student--</option>
+                                        <option value="">--Select Project--</option>
                                         @foreach ($projects as $item)
                                             <option value="{{ $item->id }}" {{ $item->id == @$edit->project_id ? 'selected' : '' }}> {{ $item->name }}</option>
                                         @endforeach
                                     </select>
+
+                                    <div class="form-group form-inline">
+                                        <ul>
+                                            @foreach ($users as $user)
+                                                <li style="list-style: none" class="my-2">
+                                                    <label><input type="checkbox" name="user_id[]" value="{{ $user->id }}"> {{ $user->name .'-'. $user->student_id }}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <br>
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="">Task Title</label>
@@ -60,7 +72,7 @@
                                         </div></div>
 
 
-                                        
+
                                     <div class="col-md-6 col-sm-12 col-lg-6">
                                         <label for="">Select Images</label>
                                         <input type="file" class="form-control my-5" style="height: 200px" name="images[]" multiple>
@@ -77,7 +89,7 @@
                                         <textarea class="form-control" name="des">{{ @$edit->des }}</textarea>
                                     </div>
 
-                                    
+
 
 
                                 </div>
@@ -90,7 +102,7 @@
 
 
 
-                
+
 
                 <div class="float-right">
                     <input type="submit" class="btn btn-primary" value="Task Confirm">

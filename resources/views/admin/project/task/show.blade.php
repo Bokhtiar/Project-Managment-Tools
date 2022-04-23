@@ -16,6 +16,15 @@
                     <h3>Project Info</h3>
                     <p>Project Name: {{ $show->project ? $show->project->name: '' }}</p>
                     <p>Title: {{ $show->title }}</p>
+                    <p><?php
+                        $str = $show->user_id;
+                        $ex =  explode(" ",$str);
+
+                        ?>
+                        @foreach ($ex as $e)
+                            {{ $e }}
+                        @endforeach
+                        </p>
                 </div>
                 <div class="col-md-6">
                     <h3>Project Description Duration</h3>
@@ -29,7 +38,7 @@
         <section class="row">
             <div class="col-md-6 col-lg-6 col-sm-12">
                 @if ($show->images == null)
-                
+
                 @else
                 @php
                 $images = json_decode($show->images);
@@ -42,7 +51,7 @@
             <div class="col-md-6 col-lg-6 col-sm-12">
                <a href="{{ asset($show->file) }}" download={{ $show->title }}>DOC</a>
             </div>
-           
+
         </section>
     </section>
     <section class="container">
