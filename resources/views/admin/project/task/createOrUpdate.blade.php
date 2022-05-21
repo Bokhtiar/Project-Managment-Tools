@@ -36,7 +36,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
                                     <label for="">Select Project</label>
+<<<<<<< HEAD
                                     <select name="project_id" id="project_id" class="form-control select2" required>
+=======
+                                    <select name="project_id" id="" class="form-control select2" required>
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                                         <option value="">--Select Project--</option>
                                         @foreach ($projects as $item)
                                             <option value="{{ $item->id }}" {{ $item->id == @$edit->project_id ? 'selected' : '' }}> {{ $item->name }}</option>
@@ -44,9 +48,19 @@
                                     </select>
 
                                     <div class="form-group form-inline">
+<<<<<<< HEAD
                                     <ul id="list_user_id"> <!--project ways list student show -->
                                              
                                     </ul>
+=======
+                                        <ul>
+                                            @foreach ($users as $user)
+                                                <li style="list-style: none" class="my-2">
+                                                    <label><input type="checkbox" name="user_id[]" value="{{ $user->id }}"> {{ $user->name .'-'. $user->student_id }}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                                         <br>
                                     </div>
 

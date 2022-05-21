@@ -37,6 +37,7 @@
                         <td>{{ $item->title }}</td>
                         <td>{{ $item->start_date }} to {{ $item->end_dete }}</td>
                         <td>
+<<<<<<< HEAD
                           @php
                               $currentDate = date('Y-m-d');
                               
@@ -52,6 +53,8 @@
                           @endphp
                         </td>
                         <td>
+=======
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                             @if($item->status == 0)
                             <a href="{{ url('user/task/status', $item->id) }}" class="btn btn-danger  btn-sm" style="border-radius: 50px; height:20px; line-height:6px">Progress</a>
                             @else

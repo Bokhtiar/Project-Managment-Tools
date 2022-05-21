@@ -16,16 +16,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Project Info</h3>
+<<<<<<< HEAD
                     <p><span class="font-weight-bold">Project Name:</span>  &nbsp;&nbsp; {{ $show->project ? $show->project->name: '' }}</p>
                     <p><span class="font-weight-bold">Task Title:</span>   &nbsp;&nbsp;      {{ $show->title }}</p>
                     <p><span class="font-weight-bold">Task Description:</span>    &nbsp;&nbsp;   {{ $show->des }}</p>
+=======
+                    <p>Project Name: {{ $show->project ? $show->project->name: '' }}</p>
+                    <p>Title: {{ $show->title }}</p>
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                     <p><?php
                         $str = $show->user_id;
                         $ex =  explode(" ",$str);
 
                         ?>
                         @foreach ($ex as $e)
+<<<<<<< HEAD
                            
+=======
+                            {{ $e }}
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                         @endforeach
                         </p>
                 </div>

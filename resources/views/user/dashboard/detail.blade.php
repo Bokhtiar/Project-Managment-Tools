@@ -41,8 +41,12 @@
 
                         </section>
                         <div class="">
+<<<<<<< HEAD
                             {{-- <a href="{{ asset($show->file) }}" download={{ $show->file }} class="btn btn-success" >DOC FILE DOWNLOAD</a> --}}
                             <a class="btn btn-success my-3" href="{{ url('user/doc/view', $show->id) }}">Task Document</a>
+=======
+                            <a href="{{ asset($show->file) }}" download={{ $show->file }} class="btn btn-success" >DOC FILE DOWNLOAD</a>
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
                          </div>
 
 

@@ -33,7 +33,11 @@ class TaskController extends Controller
     public function create()
     {
         $projects = Project::all();
+<<<<<<< HEAD
         $users = User::where('role_id', 2)->get();
+=======
+        $users = User::where('role_id',2)->get();
+>>>>>>> 016c3dd18942721988d49eedb6c1ddeb96104eb6
         return view('admin.project.task.createOrUpdate', compact('projects','users'));
     }
 
@@ -73,7 +77,7 @@ class TaskController extends Controller
         $images = array();
         if ($request->hasFile('images')) {
             foreach ($request->images as $key => $photo) {
-                $path = $photo->store('task/photos');
+                $path = $photo->store('task/photos/');
                 array_push($images, $path);
             }
             $task['images']=json_encode($images);
