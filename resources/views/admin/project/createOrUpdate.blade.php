@@ -20,6 +20,7 @@
 @section('admin_content')
 
 <section class="card">
+    <h3 class="float-right my-2 ml-3">Create Project </h3>
     <div class="card-header ">
         <div class="card-body">
             <form action="@route('admin.project.store')" method="POST" class="form-group">

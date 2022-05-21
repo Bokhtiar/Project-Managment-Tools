@@ -14,17 +14,20 @@
                 <div class="card">
                     <div class="card-title">
                         <div class="card-header">
-                            <p class="h3">{{ $show->title }}</p>
+                            <p class="h3"><span class="font-weight-bold">Project Name: </span>{{ $show->project ? $show->project->name : '' }}</p>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p class="lead">{{ $show->des }}</p>
+                        <p class=""><span class="font-weight-bold">Task Title: </span> {{ $show->title }}</p>
 
+                        <p class=""><span class="font-weight-bold">Task Description: </span> {{ $show->des }}</p>
+
+                        <p class=""><span class="font-weight-bold">Task Duration: </span>{{ $show->start_date }} to {{ $show->end_dete }}</p>
 
                         <section class="row">
                             <div class="">
                                 @if ($show->images == null)
-                                
+
                                 @else
                                 @php
                                 $images = json_decode($show->images);
@@ -34,11 +37,12 @@
                                 @endforeach
                                 @endif
                             </div>
-                           
-                           
+
+
                         </section>
                         <div class="">
-                            <a href="{{ asset($show->file) }}" download={{ $show->title }} class="btn btn-success" >DOC FILE DOWNLOAD</a>
+                            {{-- <a href="{{ asset($show->file) }}" download={{ $show->file }} class="btn btn-success" >DOC FILE DOWNLOAD</a> --}}
+                            <a class="btn btn-success my-3" href="{{ url('user/doc/view', $show->id) }}">Task Document</a>
                          </div>
 
 
@@ -58,7 +62,8 @@
                             <section>
                                 @forelse ($comments as $item)
                                 <div class="card my-2">
-                                    <div class="card-header">
+                                    <div class="card-header"  style="background-color:  #eaf2f8;">
+                                        <img height="40px" width="40px" src="{{ asset('user/img/a.jpg') }}" alt="">
                                         {{ $item->user ? $item->user->name : '' }}
                                     </div>
                                     <div class="card-body">
@@ -82,8 +87,17 @@
                     </div>
                     <div class="card-body">
                         @foreach ($tasks as $item)
+                        <?php
+                        $str = $item->user_id;
+                        $ex =  explode(" ",$str);
+
+                        ?>
+                @foreach ($ex as $e)
+                    @if ($e==Auth::id())
                         <p><a href="{{ url('user/task/detail', $item->id) }}">{{ $item->title }}</a> </p> <hr>
-                        @endforeach
+                    @endif
+                    @endforeach
+                @endforeach
                     </div>
                 </div>
 

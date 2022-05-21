@@ -10,12 +10,14 @@
     @section('admin_content')
 
     <section class="card">
+        <h3 class="float-right my-2 ml-3">Task List</h3>
         <div class="card-body">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Project Name</th>
                 <th>Task Title</th>
+                <th>Aleart</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -25,8 +27,23 @@
                     <td>{{ $item->project ? $item->project->name: '' }}</td>
                     <td>{{ $item->title }}</td>
                     <td>
+                        @php
+                        $currentDate = date('Y-m-d');
+                        
+                        $startDate = $item->start_date;
+                        $endDate = $item->end_dete; 
+                        if (($currentDate >= $startDate) && ($currentDate <= $endDate)){   
+                          echo $endDate;
+                        }else{    
+                          echo '
+                            <p style="color:red">Task Out Of Date</p>
+                          ';  
+                        }
+                        @endphp
+                    </td>
+                    <td>
                         <a href="@route('admin.task.show', $item->id)" class="btn btn-sm btn-success" >View</a>
-                        <a href="@route('admin.task.edit', $item->id)" class="btn btn-sm btn-primary" >Edit</a>
+                        <a href="@route('admin.task.edit', $item->id)" class="btn btn-sm btn-info" >Edit</a>
                         <form action="@route('admin.task.destroy', $item->id)" method="POST">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -35,13 +52,7 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Project Name</th>
-                <th>Task Title</th>
-                <th>Action</th>
-            </tr>
-        </tfoot>
+
         </table>
     </div>
     </section>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\StudentAssign;
+use Illuminate\Support\Facades\Response;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +36,18 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function pdfview($id)
     {
-        //
+        $task = Task::find($id);
+             $filename = $task->file;
+            
+            // Header content type
+            header("Content-type: application/pdf");
+            
+            header("Content-Length: " . filesize($filename));
+            
+            // Send the file to the browser.
+            readfile($filename);
     }
 
     /**

@@ -16,7 +16,8 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $contacts = Contact::latest()->get();
+        return view('admin.index', compact('contacts'));
     }
 
     /**
@@ -26,7 +27,7 @@ class AdminDashboardController extends Controller
      */
     public function contact_list()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::latest()->get();
         return view('admin.contact_list', compact('contacts'));
     }
 
@@ -48,9 +49,18 @@ class AdminDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function status($id)
     {
-        //
+        $contacts = Contact::find($id);
+        if($contacts->status == 0){
+            $contacts->status = 1;
+            $contacts->save();
+            return back();
+        }else{
+            $contacts->status = 0;
+            $contacts->save();
+            return back();
+        }
     }
 
     /**

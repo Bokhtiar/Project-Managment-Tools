@@ -24,9 +24,9 @@
         <div class="">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2 class="text-success">ABOUT DIU PMIC</h2>
+                    <h2 class="text-success">ABOUT DIU PMIS</h2>
                     <p class="my-3">
-                        Welcome to DIU PMIS. DIU Project Management Information System aka DIU PMIS provides a
+                        Welcome to DIU PMTS. DIU Project Management Information System aka DIU PMTS provides a
                         single point access to final year project information for both students and faculties.
                     </p>
                     <p class="my-3">
@@ -34,10 +34,10 @@
                         development project, research project or internship. Over a year, a student needs to attend
                         six regular followups, three grand followups, prepare their report, presentation and lots of
                         other stuffs. To ease up the entire process and keep track of each and every events, DIU
-                        PMIS was created.
+                        PMTS was created.
                     </p>
                     <div class="my-4">
-                        <button class="btn btn-primary w-50">Register For Title Defense</button>
+                        <button class="btn btn-primary w-50"><a class="text-light" href="{{ url('register') }}">Register For Title Defense</a></button>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -95,21 +95,33 @@
             <div class="row my-5">
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="card text-center my-2" style="width: 15rem;">
-                        <img class="card-img-top rounded-circle"
+                        <img class=" rounded-circle"
                             src="https://pmiscse.daffodilvarsity.edu.bd/api/media/uDrive/710002119/484682raju_150x150.jpg" alt="Card image cap"
-                            height="250px">
+                            height=""  style="width:136px; margin-left:60px">
                         <div class="card-body">
                             <h5 class="card-title">Mr. Mahfuzur Rahman Raju</h5>
-                            <p class="card-text">Assistant Professor<br>
+                            <p class="card-text">Lecturer (Senior Scale)<br>
                                 mahfuzur@daffodilvarsity.edu.bd</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6 ">
                     <div class="card text-center my-2" style="width: 15rem;">
-                        <img class="card-img-top rounded-circle"
-                            src="https://pmiscse.daffodilvarsity.edu.bd/media/members/SMTS.jpeg"
-                            alt="Card image cap" height="250px">
+                        <img class=" rounded-circle"
+                            src="https://faculty.daffodilvarsity.edu.bd/images/teacher/f97f911078298f897e90bced11c202e0.jpg"
+                            alt="Card image cap" height="" style="width:136px; margin-left:60px">
+                        <div class="card-body">
+                            <h5 class="card-title">Mr. Mushfiqur Rahman</h5>
+                            <p class="card-text">Lecturer (Senior Scale)   <br>
+                                mushfiqur.cse@diu.edu.bd</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="card text-center my-2" style="width: 15rem;">
+                        <img class=" rounded-circle"
+                            src="https://faculty.daffodilvarsity.edu.bd/images/teacher/dd39c67c90c18b9a102bc56d0a9119ca.JPG"
+                            alt="Card image cap" height="" style="width:136px; margin-left:60px">
                         <div class="card-body">
                             <h5 class="card-title">Mr. Narayan Ranjan Chakraborty</h5>
                             <p class="card-text">Assistant Professor<br>
@@ -119,25 +131,13 @@
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="card text-center my-2" style="width: 15rem;">
-                        <img class="card-img-top rounded-circle"
-                            src="https://pmiscse.daffodilvarsity.edu.bd/media/members/image.png"
-                            alt="Card image cap" height="250px">
+                        <img class=" rounded-circle"
+                            src="https://faculty.daffodilvarsity.edu.bd/images/teacher/1b22ae9393ecb77e000dcee7c7d2f747.png"
+                            alt="Card image cap" height="" style="width:136px; margin-left:60px">
                         <div class="card-body">
-                            <h5 class="card-title">Mr. Narayan Ranjan Chakraborty</h5>
-                            <p class="card-text">Assistant Professor<br>
-                                narayan@daffodilvarsity.edu.bd</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6">
-                    <div class="card text-center my-2" style="width: 15rem;">
-                        <img class="card-img-top rounded-circle"
-                            src="https://pmiscse.daffodilvarsity.edu.bd/media/members/Pic_6awfspP.png"
-                            alt="Card image cap" height="250px">
-                        <div class="card-body">
-                            <h5 class="card-title">Mr. Narayan Ranjan Chakraborty</h5>
-                            <p class="card-text">Assistant Professor<br>
-                                narayan@daffodilvarsity.edu.bd</p>
+                            <h5 class="card-title">Mr. Mohammad Jahangir Alam</h5>
+                            <p class="card-text">Lecturer (Senior Scale) <br>
+                                jahangir.cse@diu.edu.bd</p>
                         </div>
                     </div>
                 </div>

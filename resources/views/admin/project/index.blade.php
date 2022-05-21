@@ -10,6 +10,7 @@
     @section('admin_content')
 
     <section class="card">
+        <h3 class="float-right my-2 ml-3">Project List</h3>
         <div class="card-body">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -22,10 +23,12 @@
         <tbody>
             @foreach ($projects as $item)
                 <tr>
-                    <td>{{ $item->name }}</td>
+                    <td><a href="{{ url('admin/project/details', $item->id) }}">{{ $item->name }}</a></td>
                     <td>
                         @foreach (App\Models\StudentAssign::where('project_id', $item->id)->get() as $pm)
-                        <p><span class="font-weight-bold">{{ $pm->user ? $pm->user->name : '' }}</span> {{ $pm->user ? $pm->user->email : '' }}</p>
+                        <a href="{{ url('admin/student', $pm->user_id) }}">
+                            <p><span class="font-weight-bold">{{ $pm->user ? $pm->user->name : '' }}</span>&nbsp;&nbsp;( {{ $pm->user ? $pm->user->email : '' }} )</p>
+                        </a>
                         @endforeach
                     </td>
                     <td>
@@ -37,13 +40,7 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Project Name</th>
-                <th>Assign Student</th>
-                <th>Action</th>
-            </tr>
-        </tfoot>
+    
         </table>
     </div>
     </section>

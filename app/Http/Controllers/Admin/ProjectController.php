@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Task;
 use App\Models\StudentAssign;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -60,9 +61,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function details($id)
     {
-        //
+        $tasks = Task::where('project_id', $id)->get();
+        return view('admin.project.detail', compact('tasks'));
     }
 
     /**
@@ -112,5 +114,12 @@ class ProjectController extends Controller
         return response()->json([
             'user'=>$user,
         ]);
+    }
+
+
+    public function project_student_assign($id)
+    {
+        $projects = StudentAssign::with('user')->where('project_id', $id)->get();
+        return response()->json($projects, 200);
     }
 }

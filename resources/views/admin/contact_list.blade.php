@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title', 'List Of Sells')
+@section('title', 'List Of Contact')
 
 @section('css')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -10,6 +10,7 @@
     @section('admin_content')
 
     <section class="card">
+        <h3 class="float-right my-2 ml-3">Contact List</h3>
         <div class="card-body">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -17,6 +18,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Message</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +27,13 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->msg }}</td>
+                    <td>
+                        @if ($item->status == 0)
+                        <a class="btn btn-sm btn-danger" href="{{ url('admin/contact/status', $item->id) }}">Pending</a>
+                        @else 
+                            <a class="btn btn-sm btn-success" href="{{ url('admin/contact/status', $item->id) }}">Success</a>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -33,6 +42,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Message</th>
+                <th>Status</th>
             </tr>
         </tfoot>
         </table>
